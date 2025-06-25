@@ -1,0 +1,43 @@
+{
+  "chart": { "numberSuffix": "", "numberPrefix": "$" },
+  "data": [
+    { "label": "Equity Investments", "value": "1500" },
+    { "label": "Fixed Income Investments", "value": "800" },
+    { "label": "Cash and Money Market", "value": "300" },
+    { "label": "Real Estate Investments", "value": "1100" },
+    { "label": "Commodities", "value": "420" },
+    { "label": "Alternative Investments", "value": "700" }
+  ],
+  "datasets": [
+    {
+      "name": "Last Quarter",
+      "data": [
+        { "label": "Equity Investments", "value": "20" },
+        { "label": "Fixed Income Investments", "value": "30" },
+        { "label": "Cash and Money Market", "value": "10" },
+        { "label": "Real Estate", "value": "15" },
+        { "label": "Alternative Investments", "value": "5" }
+      ]
+    },
+    {
+      "name": "Current Quarter",
+      "data": [
+        { "label": "Equity Investments", "value": "18" },
+        { "label": "Fixed Income Investments", "value": "35" },
+        { "label": "Cash and Money Market", "value": "8" },
+        { "label": "Real Estate", "value": "20" },
+        { "label": "Alternative Investments", "value": "7" }
+      ]
+    },
+    {
+      "name": "Next Quarter (Projection)",
+      "data": [
+        { "label": "Equity Investments", "value": "-22" },
+        { "label": "Fixed Income Investments", "value": "-33" },
+        { "label": "Cash and Money Market", "value": "10" },
+        { "label": "Real Estate", "value": "-18" },
+        { "label": "Alternative Investments", "value": "7" }
+      ]
+    }
+  ]
+}

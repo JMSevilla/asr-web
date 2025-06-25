@@ -1,0 +1,58 @@
+{
+  "plugins": ["sonarjs"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jsx-a11y/recommended",
+    "next",
+    "plugin:prettier/recommended",
+    "plugin:sonar/base",
+    "plugin:sonar/recommended",
+    "plugin:sonarjs/recommended"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "no-empty": ["error", { "allowEmptyCatch": true }],
+    "@typescript-eslint/no-empty-function": "warning",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "sonarjs/no-duplicate-string": "off",
+    "sonarjs/cognitive-complexity": "off",
+    "sonarjs/no-nested-template-literals": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/display-name": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true
+      }
+    ],
+    "sonar/deprecation": 1
+  },
+  "ignorePatterns": ["next.config.js"]
+}

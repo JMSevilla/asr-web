@@ -1,0 +1,1 @@
+export type ButtonsType = 'INSURANCE_NUMBER' | 'SERVICE_NUMBER' | 'NOT_KNOWN';

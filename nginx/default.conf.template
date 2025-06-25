@@ -1,0 +1,63 @@
+proxy_cache_path /var/cache/nginx levels=1:2 keys_zone=STATIC:10m inactive=7d use_temp_path=off;
+
+upstream web_upstream {
+  server localhost:8000;
+}
+
+upstream openam_upstream {
+  server ${OPENAM_BASEURL};
+}
+
+client_max_body_size 15m;
+
+server {
+    listen 80;
+    server_tokens off;
+
+    gzip on;
+    gzip_proxied any;
+    gzip_comp_level 4;
+    gzip_types text/css application/javascript image/svg+xml;
+
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+    proxy_busy_buffers_size 512k;
+    proxy_buffers 4 512k;
+    proxy_buffer_size 256k;
+
+    include /etc/nginx/snippets/general-security-headers.conf;
+
+    location /_next/static {
+      proxy_cache STATIC;
+      proxy_pass http://web_upstream;
+      proxy_read_timeout 180s;
+      add_header X-Cache-Status $upstream_cache_status;
+    }
+
+    location /static {
+      proxy_cache STATIC;
+      proxy_ignore_headers Cache-Control;
+      proxy_cache_valid 60m;
+      proxy_pass http://web_upstream;
+      proxy_read_timeout 180s;
+      proxy_hide_header X-Powered-By;
+      add_header X-Cache-Status $upstream_cache_status;
+    }
+
+    location ~ ^/twacm/Consumer/metaAlias/mdp/ {
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $remote_addr;
+      proxy_set_header Host $host;
+      proxy_set_header X-Forwarded-Protocol https;
+      proxy_pass https://openam_upstream;
+    }
+
+    location / {
+      proxy_hide_header X-Powered-By;
+      proxy_pass http://web_upstream;
+      proxy_read_timeout 180s;
+    }
+}
